@@ -10,4 +10,5 @@ Espinho::~Espinho() {
 
 void Espinho::machucaJogador(Jogador* pJogador) {
 	pJogador->alteraVida(10);
+
 }

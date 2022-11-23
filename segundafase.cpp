@@ -37,6 +37,6 @@ void SegundaFase::criaBoss() {
 	boss->setTamanho(Coordenadaf(100, 100));
 	boss->setPosicao(Coordenadaf(800, 0));
 	listaEntidades.adicionaEntidade(boss);
-	gerenciadorColisao.entidadesMoveis.push_back(boss);
+	gerenciadorColisao.inimigos.push_back(boss);
 
 }

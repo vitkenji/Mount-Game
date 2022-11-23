@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="boss.cpp" />
     <ClCompile Include="botao.cpp" />
     <ClCompile Include="colisao.cpp" />
     <ClCompile Include="ente.cpp" />
@@ -139,6 +140,7 @@
     <ClCompile Include="fase.cpp" />
     <ClCompile Include="goblin.cpp" />
     <ClCompile Include="grafico.cpp" />
+    <ClCompile Include="inimigo.cpp" />
     <ClCompile Include="janela.cpp" />
     <ClCompile Include="jogador.cpp" />
     <ClCompile Include="listaentidade.cpp" />

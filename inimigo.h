@@ -4,6 +4,12 @@
 
 class Inimigo : public Personagem {
 private:
+	int dano;
+
 public:
+	Inimigo();
+	~Inimigo();
+	void setDano(int dano);
+	int getDano();
 
 };

@@ -4,8 +4,13 @@
 
 class Esqueleto : public Inimigo {
 private:
+
+	float tempoDirecao;
+	float cooldown;
+
 public:
 	Esqueleto();
 	~Esqueleto();
-
+	void executa();
+	
 };

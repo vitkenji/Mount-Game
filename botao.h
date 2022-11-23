@@ -18,5 +18,6 @@ public:
 	void setFonte(string arquivo);
 	void setPosicao(Coordenadaf posicao);
 	void setString(string string);
+	string getString();
 
 };

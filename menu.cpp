@@ -57,7 +57,7 @@ int Menu::executa() {
 					botoes[opcao]->corpo.setFillColor(sf::Color::Red);
 					botoes[opcao + 1]->corpo.setFillColor(sf::Color::Cyan);
 					imprime();
-
+					
 				}
 			}
 		}

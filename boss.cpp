@@ -1,50 +1,49 @@
-#include "goblin.h"
-#include "grafico.h"
+#include "boss.h"
 
 using namespace std;
 
-Goblin::Goblin() :Inimigo() {
-	pJogador = nullptr;
-	intervaloTiro = 0;
+Boss::Boss():Inimigo() {
 	cooldown = 1;
+	intervaloTiro = 0;
+	pJogador = nullptr;
 
 }
 
-Goblin::~Goblin() {
-	delete(pJogador);
+Boss::~Boss() {
+	list<Projetil*>::iterator i;
+	for (i = projeteis.begin(); i != projeteis.end(); i++) {
+		delete(*i);
+
+	}
 }
 
-void Goblin::adicionaProjetil(Projetil *ptr) {
-	projeteis.push_back(ptr);
-
-}
-
-void Goblin::atira() {
-	Projetil* ptr;
+void Boss::atira() {
+	Projetil* pProjetil;
 	if (i == projeteis.end()) {
-		ptr = *(projeteis.begin());
+		pProjetil = *(projeteis.begin());
 		i = projeteis.begin();
 
 	}
 
 	else {
-		ptr = *(i++);
+		pProjetil = *(i++);
 		i = i++;
 
 	}
-	ptr->estaVivo = true;
-	ptr->velocidade = Coordenadaf(0, 0);
-	ptr->setPosicao(this->getPosicao());
 
+	pProjetil->estaVivo = true;
+	pProjetil->velocidade = Coordenadaf(0, 0);
+	pProjetil->setPosicao(this->getPosicao());
 	if (this->getPosicao().x > pJogador->getPosicao().x) {
-		ptr->velocidade.x = -600;
+		pProjetil->velocidade.x = -600;
 
 	}
-	else { ptr->velocidade.x = 600; }
+	else { pProjetil->velocidade.x = 600; }
 
 }
 
-void Goblin::executa() {
+void Boss::executa() {
+
 	atualizaPosicao();
 	intervaloTiro += pGrafico->getDt();
 
@@ -67,3 +66,13 @@ void Goblin::executa() {
 	}
 }
 
+void Boss::adicionaProjetil(Projetil* ptr) {
+	projeteis.push_back(ptr);
+
+}
+
+void Boss::setEstaVivo(bool vivo) {
+	this->estaVivo = vivo;
+	estaVivo = vivo;
+
+}

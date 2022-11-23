@@ -10,4 +10,8 @@ private:
 public:
 	Projetil();
 	~Projetil();
+	void setDano(int dano);
+	int getDano();
+	void reset(Coordenadaf posicao);
+
 };

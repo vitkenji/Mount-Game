@@ -27,6 +27,7 @@ void Botao::imprime() {
 }
 
 void Botao::setString(string string) {
+	this->texto.setString(string);
 	texto.setString(string);
 
 }
@@ -53,3 +54,5 @@ void Botao::setPosicao(Coordenadaf posicao){
 	texto.setPosition(sf::Vector2f(posicao.x - texto.getCharacterSize() * ((float)texto.getString().getSize() / 4.0f), posicao.y - ((float)texto.getCharacterSize() / 2.0f)));
 
 }
+
+string Botao::getString() { return texto.getString(); }

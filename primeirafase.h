@@ -15,4 +15,5 @@ public:
 	void executar();
 	void criaCenario();
 	void criaInimigos();
+
 };

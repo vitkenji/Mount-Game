@@ -3,8 +3,8 @@
 Personagem::Personagem() :Entidade() {
 
 	vida = 100;
-	aceleracao.y = 981;
-
+	aceleracao.y = 1000;
+	
 }
 
 Personagem::~Personagem() {

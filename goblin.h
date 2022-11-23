@@ -20,5 +20,5 @@ public:
 	void adicionaProjetil(Projetil* ptr);
 	void atira();
 	void executa();
-
+	void setEstaVivo(bool vivo);
 };

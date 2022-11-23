@@ -68,3 +68,14 @@ const float Grafico::getDt() const {
 	return dt;
 
 }
+
+void Grafico::imprimeBackground() {
+	sf::Sprite background;
+	sf::Texture textura;
+	textura.loadFromFile("background.png");
+	background.setScale(0.15, 0.15);
+	background.setOrigin(0, 0);
+	background.setPosition(0, 0);
+	background.setTexture(textura);
+	pJanela->janela.draw(background);
+}

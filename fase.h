@@ -19,6 +19,8 @@ protected:
 	Jogador* pJogador;
 
 public:
+	
+
 	Fase(Janela* pJanela, Grafico* pGrafico);
 	~Fase();
 	Projetil* criaProjetil();

@@ -5,8 +5,8 @@ https://www.youtube.com/c/TerminalRootTV
 */
 /*
 Erros:
-Jogador pode pular duas vezes
-Teclas nao funcionam no menu
+Goblin nao aparece
+Criar obstaculos
 Erro no fullscreen
 
 */

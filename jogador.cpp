@@ -4,6 +4,7 @@ Jogador::Jogador() : Personagem(), pontos() {
 	podePular = false;
 	pontos = 0;
 	vida = 1000;
+	aceleracao.y = 1000;
 }
 
 Jogador::~Jogador() {
@@ -11,28 +12,29 @@ Jogador::~Jogador() {
 }
 void Jogador::movimenta() {
 
-	int aceleracao = 250;
+	int acel = 275;
 
 	velocidade.x = 0;
-	//velocidade.y = 1300;
+	aceleracao.y = 3000;
+	//velocidade.y = 1000;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && podePular == true) {
-		velocidade.y += -950;
+		velocidade.y += -1000;
 		podePular = false;
-
+		atualizaPosicao();
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		velocidade.x = -aceleracao;
+		velocidade.x = -acel;
 
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		velocidade.x = aceleracao;
+		velocidade.x = acel;
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		velocidade.y = aceleracao;
+		velocidade.y = acel;
 
 	}
 }

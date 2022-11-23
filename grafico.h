@@ -10,9 +10,9 @@ private:
 	sf::Clock clock;
 	float dt;
 
+	//singleton
 	Grafico();
 	Grafico(Janela* pJanela);
-
 	static Grafico* instance;
 
 public:
@@ -27,5 +27,5 @@ public:
 	void display();
 	const float getDt() const;
 	float atualizaDt();
-
+	void imprimeBackground();
 };

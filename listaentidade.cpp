@@ -17,10 +17,8 @@ void ListaEntidade::adicionaEntidade(Entidade* pEntidade) {
 void ListaEntidade::inicializaEntidades() {
 
 	Node<Entidade>* ptr = lista.getPfirst();
-	int tam = lista.getSize();
-	int i;
-
-	for (i = 0; i < tam; i++) {
+	
+	for (int i = 0; i < lista.getSize(); i++) {
 
 		if (ptr->getData()->estaVivo) { ptr->getData()->imprimir(); }
 		ptr = ptr->getNext();

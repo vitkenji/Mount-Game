@@ -14,6 +14,7 @@ public:
 	Entidade();
 	~Entidade();
 	void setEstaVivo(bool vivo);
+	bool getEstaVivo();
 	void atualizaPosicao();
 	void atualizaPosicao(Coordenadaf coordenada);
 	virtual void executa();

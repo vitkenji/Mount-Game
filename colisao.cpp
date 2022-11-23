@@ -13,91 +13,13 @@ Colisao::~Colisao() {
 
 void Colisao::checaColisao() {
 
-	const int altura = janela->getAltura();
-	const int largura = janela->getLargura();
+	colisaoInimigo();
+	colisaoParede();
+	colisaoObstaculo();
+	colisaoProjetil();
+	colisaoInimigoObstaculo();
+	colisaoprojetilObstaculo();
 
-	list<Jogador*>::iterator i; //jogador
-	list<Entidade*>::iterator j; //entidade estatica
-	list<Entidade*>::iterator k; //entidade movel
-
-	for (i = jogadores.begin(); i != jogadores.end(); i++) {
-		(*i)->aceleracao = { 0,3000 };
-		//checa colisao de jogador com entidades estaticas
-		for (j = entidadesEstaticas.begin(); j != entidadesEstaticas.end(); j++) {
-			Coordenadaf contato = checaColisaoEntidades(*i, *j);
-			if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1 || contato.y < -0.1) {
-				if (contato.y < -0.01) {
-					(*i)->setPulo(true);
-					(*i)->aceleracao = { 0,0 };
-					(*i)->velocidade.y = 0;
-				}
-
-				(*i)->atualizaPosicao(contato);
-
-			}
-		}
-
-		//checa colisao de jogador com entidades moveis
-		for (k = entidadesMoveis.begin(); k != entidadesMoveis.end(); k++) {
-			if ((*k)->estaVivo) {
-				Coordenadaf contato = checaColisaoEntidades(*i, *k);
-
-				if (contato.y < -0.1) { //mata inimigos se pisar em cima
-					(*i)->atualizaPosicao(contato);
-					(*k)->estaVivo = false;
-					(*i)->pontua();
-
-				}
-
-				else if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1) {
-				
-					(*i)->alteraVida(1);
-					cout << "vida jogador: " << (*i)->getVida() << endl;
-					(*i)->velocidade.x *= -1;
-					(*i)->aceleracao.x = 0;
-					(*i)->atualizaPosicao(contato);
-
-					if (!(*i)->estaVivo) {
-						janela->janela.close();
-						cout << "morreu" << endl;
-						cout << "pontuacao: " << (*i)->getPontos() << endl;
-					}
-				}
-			}
-		}
-	}
-
-
-	//checa colisao de jogador com parede
-	for (i = jogadores.begin(); i != jogadores.end(); i++) {
-
-		float posicao = (*i)->getPosicao().x;
-		float tamanho = (*i)->getTamanho().x / 2;
-
-		if (tamanho > posicao) {
-
-			Coordenadaf coordenada = Coordenadaf(tamanho - posicao, 0);
-			(*i)->atualizaPosicao(coordenada);
-		}
-	}
-
-	//checa colisao de entidades moveis e estaticas
-	for (k = entidadesMoveis.begin(); k != entidadesMoveis.end(); k++) {
-		if ((*k)->estaVivo) {
-			for (j = entidadesEstaticas.begin(); j != entidadesEstaticas.end(); j++) {
-
-				Coordenadaf contato = checaColisaoEntidades(*k, *j);
-
-				if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1 || contato.y < -0.1) {
-					(*k)->aceleracao.y = 0;
-					(*k)->atualizaPosicao(contato);
-
-					if (contato.x > 0.2 || contato.x < -0.2) { (*k)->velocidade *= -1; }
-
-				}
-			}
-		}
-	}
 }
 
 Coordenadaf Colisao::checaColisaoEntidades(Ente* pEnte1, Ente* pEnte2) {
@@ -140,4 +62,163 @@ Coordenadaf Colisao::checaColisaoEntidades(Ente* pEnte1, Ente* pEnte2) {
 	}
 	return Coordenadaf(0, 0);
 
+}
+
+void Colisao::colisaoInimigo() {
+	
+	list<Jogador*>::iterator i;
+	list<Inimigo*>::iterator j;
+
+	
+	for (i = jogadores.begin(); i != jogadores.end(); i++) {
+		(*i)->aceleracao.y = 1000;
+
+		for (j = inimigos.begin(); j != inimigos.end(); j++) {
+			
+			if ((*j)->estaVivo) {
+
+				Coordenadaf contato = checaColisaoEntidades(*i, *j);
+				if (contato.y < -0.1 && (*i)->velocidade.y > 0.1) {
+					(*i)->atualizaPosicao(contato);
+					(*i)->pontua();
+					(*j)->alteraVida(10);
+
+				}
+				else if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1) {
+					(*i)->alteraVida(1);
+					cout << "vida jogador: " << (*i)->getVida() << endl;
+					(*i)->velocidade.x *= -1;
+					(*i)->aceleracao.x = 0;
+					(*i)->atualizaPosicao();
+				
+					if (!(*i)->estaVivo) {
+						janela->janela.close();
+						cout << "morreu" << endl;
+						cout << "pontuacao: " << (*i)->getPontos() << endl;
+					}
+				}
+			}
+		}
+	}
+}
+
+void Colisao::colisaoObstaculo() {
+
+	list<Jogador*>::iterator i;
+	list<Obstaculo*>::iterator j;
+	
+	for (i = jogadores.begin(); i != jogadores.end(); i++) {
+		(*i)->aceleracao.y = 1000;
+		for (j = obstaculos.begin(); j != obstaculos.end(); j++) {
+
+			Coordenadaf contato = checaColisaoEntidades(*i, *j);
+
+			if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1 || contato.y < -0.1) {
+				if (contato.y < -0.01) {
+					(*i)->setPulo(true);
+					(*i)->aceleracao = { 0,0 };
+					(*i)->velocidade.y = 0;
+				}
+
+				(*i)->atualizaPosicao(contato);
+
+			}
+		}
+	}
+}
+
+void Colisao::colisaoProjetil() {
+	
+	list<Jogador*>::iterator i;
+	list<Projetil*>::iterator j;
+
+	for (i = jogadores.begin(); i != jogadores.end(); i++) {
+
+		(*i)->aceleracao = Coordenadaf(0, 1000);
+
+		for (j = projeteis.begin(); j != projeteis.end(); j++) {
+			
+			if ((*j)->estaVivo) {
+				Coordenadaf contato = checaColisaoEntidades(*i, *j);
+
+				if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1 || contato.y < -0.1) {
+					(*i)->alteraVida((*j)->getDano());
+					return;
+
+				}
+			}
+		}
+	}
+}
+
+void Colisao::colisaoParede() {
+	
+	const int largura = janela->getLargura();
+	const int altura = janela->getAltura();
+	list<Jogador*>::iterator i;
+
+	for (i = jogadores.begin(); i != jogadores.end(); i++) {
+		float tamanho = (*i)->getTamanho().x / 2;
+		float posicao = (*i)->getPosicao().x;
+
+		if (tamanho > posicao) {
+			Coordenadaf coordenada = Coordenadaf(tamanho - posicao, 0);
+			(*i)->atualizaPosicao(coordenada);
+
+		}
+	}
+}
+
+void Colisao::colisaoprojetilObstaculo() {
+
+	list<Projetil*>::iterator i;
+	list<Obstaculo*>::iterator j;
+
+	for (i = projeteis.begin(); i != projeteis.end(); i++) {
+		if ((*i)->estaVivo) {
+			
+			(*i)->aceleracao.y = 1000;
+			for (j = obstaculos.begin(); j != obstaculos.end(); j++) {
+				Coordenadaf contato = checaColisaoEntidades(*i, *j);
+
+				if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1 || contato.y < -0.1) {
+					(*i)->atualizaPosicao(contato);
+					if (contato.y < 0.01) {
+						(*i)->aceleracao.y = 0;
+						(*i)->velocidade.y = 0;
+						(*i)->atualizaPosicao();
+
+					}
+				}
+			}
+		}
+	}
+}
+
+void Colisao::colisaoInimigoObstaculo() {
+	
+	list<Inimigo*>::iterator i;
+	list<Obstaculo*>::iterator j;
+
+	for (i = inimigos.begin(); i != inimigos.end(); i++) {
+		if ((*i)->estaVivo) {
+
+			(*i)->aceleracao.y = 1000;
+
+			for (j = obstaculos.begin(); j != obstaculos.end(); j++) {
+				Coordenadaf contato = checaColisaoEntidades(*i, *j);
+
+				if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1 || contato.y < -0.1) {
+					(*i)->atualizaPosicao(contato);
+
+				}
+				if (contato.y < 0.01) {
+
+					(*i)->aceleracao.y = 0;
+					(*i)->velocidade.y = 0;
+
+				}
+			}
+		}
+	}
 }

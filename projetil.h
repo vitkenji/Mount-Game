@@ -4,10 +4,11 @@
 
 class Projetil : public Entidade {
 private:
+
 	int dano;
 
-
 public:
+
 	Projetil();
 	~Projetil();
 	void setDano(int dano);

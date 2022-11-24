@@ -7,7 +7,6 @@ Fase::Fase(Janela* pJanela, Grafico* pGrafico) :
 	gerenciadorGrafico = Grafico::getInstance();
 	Ente::pGrafico = Grafico::getInstance();
 
-	criaChao();
 	criaJogador();
 
 }
@@ -25,20 +24,37 @@ void Fase::criaChao() {
 	Obstaculo* chao = new Obstaculo;
 	chao->setPosicao(Coordenadaf(0, 705));
 	chao->setTamanho({ 4000,30 });
-	chao->setCor(0, 210, 10);
+	chao->setImagem("imagens/chao.png");
+	//chao->setCor(0, 210, 10);
 	listaEntidades.adicionaEntidade(chao);
 	gerenciadorColisao.obstaculos.push_back(chao);
 
 }
 
 void Fase::criaJogador() {
-	Jogador* jogador1 = new Jogador();
-	jogador1->setPosicao(Coordenadaf(0, 0));
-	jogador1->setTamanho(Coordenadaf(40, 40));
-	jogador1->setPontos(0);
-	jogador1->setCor(255, 255, 255);
-	listaEntidades.adicionaEntidade(jogador1);
-	gerenciadorColisao.jogadores.push_back(jogador1);
+
+
+	Obstaculo* background = new Obstaculo;
+	background->setTamanho(Coordenadaf(1080, 720));
+	background->setPosicao(Coordenadaf(540, 360));
+	background->setImagem("imagens/background.jpg");
+	listaEntidades.adicionaEntidade(background);
+
+	Obstaculo* chao = new Obstaculo;
+	chao->setPosicao(Coordenadaf(0, 705));
+	chao->setTamanho({ 4000,30 });
+	chao->setImagem("imagens/chao.png");
+	//chao->setCor(0, 210, 10);
+	listaEntidades.adicionaEntidade(chao);
+	gerenciadorColisao.obstaculos.push_back(chao);
+
+	pJogador = new Jogador;
+	pJogador->setPosicao(Coordenadaf(0, 0));
+	pJogador->setTamanho(Coordenadaf(45, 45));
+	pJogador->setPontos(0);
+	pJogador->setImagem("imagens/player.png");
+	listaEntidades.adicionaEntidade(pJogador);
+	gerenciadorColisao.jogadores.push_back(pJogador);
 
 }
 
@@ -48,7 +64,6 @@ void Fase::atualizaJogo() {
 	listaEntidades.executaEntidades();
 	gerenciadorColisao.checaColisao();
 	gerenciadorGrafico->clear();
-	//gerenciadorGrafico->imprimeBackground();
 	listaEntidades.inicializaEntidades();
 	gerenciadorGrafico->display();
 
@@ -57,7 +72,7 @@ void Fase::atualizaJogo() {
 Projetil* Fase::criaProjetil() {
 
 	Projetil* pProjetil = new Projetil;
-	pProjetil->setTamanho(Coordenadaf(5,5));
+	pProjetil->setTamanho(Coordenadaf(7,7));
 	pProjetil->corpo.setFillColor(sf::Color::Yellow);
 	listaEntidades.adicionaEntidade(pProjetil);
 	gerenciadorColisao.projeteis.push_back(pProjetil);
@@ -79,9 +94,9 @@ void Fase::criaEspinho(Coordenadaf posicao) {
 void Fase::criaGoblin(Coordenadaf posicao) {
 
 	Goblin* goblin = new Goblin;
-	goblin->setTamanho(Coordenadaf(30,30));
+	goblin->setTamanho(Coordenadaf(40,40));
 	goblin->setPosicao(Coordenadaf(posicao));
-	goblin->setCor(10, 10, 200);
+	goblin->setImagem("imagens/goblin.png");
 	goblin->pJogador = pJogador;
 	listaEntidades.adicionaEntidade(goblin);
 	gerenciadorColisao.inimigos.push_back(goblin);
@@ -99,19 +114,37 @@ void Fase::criaCaixa(Coordenadaf posicao) {
 	Caixa* caixa = new Caixa;
 	caixa->setTamanho(Coordenadaf(60, 60));
 	caixa->setPosicao(Coordenadaf(posicao));
-	caixa->setCor(50, 50, 50);
+	caixa->setImagem("imagens/caixa.png");
 	listaEntidades.adicionaEntidade(caixa);
 	gerenciadorColisao.obstaculos.push_back(caixa);
 
 }
 
-void Fase::criaEsqueleto(Coordenadaf posicao) {
+void Fase::criaBoss(Coordenadaf posicao, float tempo) {
+	Boss* boss = new Boss;
+	boss->setTamanho(Coordenadaf(100, 100));
+	boss->setPosicao(Coordenadaf(posicao));
+	boss->setImagem("imagens/feiticeiro.png");
+	boss->pJogador = pJogador;
+	boss->velocidade.x = (30);
+	listaEntidades.adicionaEntidade(boss);
+	gerenciadorColisao.inimigos.push_back(boss);
+
+	for (int i = 0; i < 5; i++) {
+		boss->adicionaProjetil(criaProjetil());
+
+	}
+	boss->i = boss->projeteis.begin();
+}
+
+void Fase::criaEsqueleto(Coordenadaf posicao, float tempo) {
 	
-	Esqueleto* esqueleto = new Esqueleto;
-	esqueleto->setTamanho(Coordenadaf(30, 30));
+	srand(time(NULL));
+	Esqueleto* esqueleto = new Esqueleto(tempo);
+	esqueleto->setTamanho(Coordenadaf(40, 40));
 	esqueleto->setPosicao(Coordenadaf(posicao));
 	esqueleto->setImagem("imagens/esqueleto.png");
-	esqueleto->setCor(200, 0, 30);
+	esqueleto->velocidade.x = 60;
 	listaEntidades.adicionaEntidade(esqueleto);
 	gerenciadorColisao.inimigos.push_back(esqueleto);
 

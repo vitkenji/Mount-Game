@@ -16,6 +16,7 @@ public:
 	void pontua();
 	void setPulo(bool pula);
 	void movimenta();
+	void alteraVelocidade();
 	virtual void executa();
 
 };

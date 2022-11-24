@@ -8,8 +8,10 @@
 
 class PrimeiraFase : public Fase {
 private:
-
 public:
+	sf::RectangleShape background;
+	sf::Texture imagem;
+
 	PrimeiraFase(Janela* pJanela, Grafico* pGrafico);
 	~PrimeiraFase();
 	void executar();

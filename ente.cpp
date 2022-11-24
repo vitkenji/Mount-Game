@@ -14,7 +14,7 @@ void Ente::setImagem(string arquivo) {
 	
 	if (!imagem.loadFromFile(arquivo)) { cout << "error" << endl; }
 	
-	sprite.setTexture(imagem);
+	corpo.setTexture(&imagem);
 	
 
 }
@@ -22,7 +22,7 @@ void Ente::setImagem(string arquivo) {
 void Ente::setPosicao(Coordenadaf posicao) {
 	this->posicao = posicao;
 	corpo.setPosition(sf::Vector2f(posicao.x, posicao.y));
-	sprite.setPosition(sf::Vector2f(posicao.x, posicao.y));
+
 
 }
 

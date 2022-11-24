@@ -11,14 +11,14 @@ Obstaculo::~Obstaculo() {
 
 }
 
-void Obstaculo::afetaJogador(Jogador* pJogador) {
+void Obstaculo::prejudicaJogador(Jogador* pJogador) {
 
 
 }
 
 void Obstaculo::executa() {
-	aceleracao.y = 1000 - forca;
 
+	atualizaPosicao();
 }
 
 void Obstaculo::setForca(int forca) {

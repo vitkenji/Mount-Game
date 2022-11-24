@@ -5,11 +5,12 @@
 
 class Espinho : public Obstaculo {
 private:
+	int dano;
 
 public:
 
 	Espinho();
 	~Espinho();
-	void machucaJogador(Jogador* pJogador);
-
+	void prejudicaJogador(Jogador* pJogador);
+	void executa();
 };

@@ -9,6 +9,7 @@
 #include "esqueleto.h"
 #include "espinho.h"
 #include "caixa.h"
+#include "boss.h"
 
 class Fase : public Ente {
 protected:
@@ -17,10 +18,9 @@ protected:
 	ListaEntidade listaEntidades;
 	Janela* pJanela;
 	Jogador* pJogador;
-
+	
 public:
 	
-
 	Fase(Janela* pJanela, Grafico* pGrafico);
 	~Fase();
 	Projetil* criaProjetil();
@@ -30,7 +30,8 @@ public:
 	void atualizaJogo();
 	void criaCaixa(Coordenadaf posicao);
 	void criaEspinho(Coordenadaf posicao);
-	void criaEsqueleto(Coordenadaf posicao);
+	void criaEsqueleto(Coordenadaf posicao, float tempo);
 	void criaGoblin(Coordenadaf posicao);
+	void criaBoss(Coordenadaf posicao, float tempo);
 
 };

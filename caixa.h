@@ -5,5 +5,7 @@
 class Caixa : public Obstaculo {
 private:
 public:
-
+	Caixa();
+	~Caixa();
+	void executa();
 };

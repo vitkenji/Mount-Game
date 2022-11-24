@@ -1,8 +1,8 @@
 #include "esqueleto.h"
 #include "grafico.h"
 
-Esqueleto::Esqueleto():Inimigo() {
-	tempoDirecao = 5;
+Esqueleto::Esqueleto(float tempo):Inimigo() {
+	tempoDirecao = tempo;
 	cooldown = 0;
 
 }

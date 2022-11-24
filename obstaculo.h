@@ -10,7 +10,7 @@ protected:
 public:
 	Obstaculo();
 	~Obstaculo();
-	virtual void afetaJogador(Jogador* pJogador);
+	virtual void prejudicaJogador(Jogador* pJogador);
 	void executa();
 	void setForca(int forca);
 	int getForca();

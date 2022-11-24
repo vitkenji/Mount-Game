@@ -27,5 +27,5 @@ public:
 	void display();
 	const float getDt() const;
 	float atualizaDt();
-	void imprimeBackground();
+	void imprimeBackground(sf::RectangleShape* background);
 };

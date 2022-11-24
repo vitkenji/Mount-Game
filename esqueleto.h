@@ -9,7 +9,7 @@ private:
 	float cooldown;
 
 public:
-	Esqueleto();
+	Esqueleto(float tempo = 2.1 + rand()%4);
 	~Esqueleto();
 	void executa();
 	

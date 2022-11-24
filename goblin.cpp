@@ -45,6 +45,7 @@ void Goblin::atira() {
 }
 
 void Goblin::executa() {
+	velocidade.y = 1000;
 	atualizaPosicao();
 	intervaloTiro += pGrafico->getDt();
 
@@ -66,4 +67,3 @@ void Goblin::executa() {
 		}
 	}
 }
-

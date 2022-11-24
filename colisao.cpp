@@ -118,6 +118,8 @@ void Colisao::colisaoObstaculo() {
 					(*i)->setPulo(true);
 					(*i)->aceleracao = { 0,0 };
 					(*i)->velocidade.y = 0;
+					(*j)->prejudicaJogador((*i));
+					cout << "vida: " << (*i)->getVida() << endl;
 				}
 
 				(*i)->atualizaPosicao(contato);

@@ -59,7 +59,7 @@ Grafico* Grafico::getInstance() {
 float Grafico::atualizaDt() {
 
 	dt = (float)clock.restart().asSeconds();
-	if (dt > 0.15) { dt = 0.15; }
+	if (dt > 0.01) { dt = 0.01; }
 	return dt;
 
 }
@@ -69,13 +69,8 @@ const float Grafico::getDt() const {
 
 }
 
-void Grafico::imprimeBackground() {
-	sf::Sprite background;
-	sf::Texture textura;
-	textura.loadFromFile("background.png");
-	background.setScale(0.15, 0.15);
-	background.setOrigin(0, 0);
-	background.setPosition(0, 0);
-	background.setTexture(textura);
-	pJanela->janela.draw(background);
+void Grafico::imprimeBackground(sf::RectangleShape* background) {
+	pJanela->janela.draw(*background);
+
+
 }

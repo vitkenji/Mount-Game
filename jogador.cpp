@@ -19,7 +19,7 @@ void Jogador::movimenta() {
 	//velocidade.y = 1000;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && podePular == true) {
-		velocidade.y += -1000;
+		velocidade.y += -800;
 		podePular = false;
 		atualizaPosicao();
 	}
@@ -62,5 +62,11 @@ int Jogador::getPontos() {
 
 void Jogador::pontua() {
 	pontos += 100;
+
+}
+
+void Jogador::alteraVelocidade() {
+	velocidade.x = 100;
+
 
 }

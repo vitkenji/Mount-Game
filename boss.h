@@ -8,14 +8,16 @@ using namespace std;
 
 class Boss : public Inimigo {
 private:
+	float tempoDirecao;
 	float cooldown;
 	float intervaloTiro;
+
 
 public:
 	list<Projetil*> projeteis;
 	list<Projetil*>::iterator i;
 
-	Boss();
+	Boss(float tempo = 5);
 	~Boss();
 	Jogador* pJogador;
 	void adicionaProjetil(Projetil* ptr);

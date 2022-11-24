@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Boss::Boss():Inimigo() {
+Boss::Boss(float tempo):Inimigo() {
+
+	tempoDirecao = tempo;
 	cooldown = 1;
 	intervaloTiro = 0;
 	pJogador = nullptr;
@@ -43,8 +45,17 @@ void Boss::atira() {
 }
 
 void Boss::executa() {
+	
+	cooldown += pGrafico->getDt();
+	velocidade.y = 1000;
+	if (cooldown >= tempoDirecao) {
 
+		velocidade.x *= -1;
+		cooldown -= tempoDirecao;
+
+	}
 	atualizaPosicao();
+
 	intervaloTiro += pGrafico->getDt();
 
 	float distanciay;

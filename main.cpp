@@ -2,13 +2,7 @@
 https://www.youtube.com/channel/UCrNDrGwDXmBErjp0BGqqOUw
 https://www.youtube.com/user/HadryanSalles
 https://www.youtube.com/c/TerminalRootTV
-*/
-/*
-Erros:
-Goblin nao aparece
-Criar obstaculos
-Erro no fullscreen
-
+colega Thomas Missiato
 */
 
 #pragma once

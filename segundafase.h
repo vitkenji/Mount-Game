@@ -11,5 +11,5 @@ public:
 	~SegundaFase();
 	void executar();
 	void criaInimigos();
-	void criaBoss();
+	void criaCenario();
 };

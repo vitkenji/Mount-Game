@@ -43,7 +43,7 @@ void PrimeiraFase::criaInimigos() {
 		posicaoX += 20 + rand()%200;
 		posicaoY += rand() % 100;
 	}
-	posicaoX = 200;
+	posicaoX = 400;
 	posicaoY = 100;
 
 	for (int i = 0; i < 2 + rand() % 3; i++) {
@@ -52,7 +52,10 @@ void PrimeiraFase::criaInimigos() {
 		posicaoY += 100;
 		
 	}
+
 	criaBoss(Coordenadaf(600, 300), 5);
+	criaBoss(Coordenadaf(600, 600), 5);
+	criaBoss(Coordenadaf(200, 600), 5);
 	
 }
 
@@ -80,10 +83,25 @@ void PrimeiraFase::criaCenario() {
 	listaEntidades.adicionaEntidade(plataforma3);
 	gerenciadorColisao.obstaculos.push_back(plataforma3);
 
+	Obstaculo* plataforma4 = new Obstaculo;
+	plataforma4->setTamanho(Coordenadaf(300, 20));
+	plataforma4->setPosicao(Coordenadaf(930, 500));
+	plataforma4->setImagem("imagens/chao.png");
+	listaEntidades.adicionaEntidade(plataforma4);
+	gerenciadorColisao.obstaculos.push_back(plataforma4);
+
+	Obstaculo* plataforma5 = new Obstaculo;
+	plataforma5->setTamanho(Coordenadaf(150, 20));
+	plataforma5->setPosicao(Coordenadaf(710, 570));
+	plataforma5->setImagem("imagens/chao.png");
+	listaEntidades.adicionaEntidade(plataforma5);
+	gerenciadorColisao.obstaculos.push_back(plataforma5);
+
 	for (int i = 0; i < 3; i++) {
 		criaEspinho(Coordenadaf(200 + 200*i, 89));
-
+		criaEspinho(Coordenadaf(200 + 200*i, 409));
 	}
 
 	criaCaixa(Coordenadaf(930,215));
+
 }

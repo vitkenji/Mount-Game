@@ -85,7 +85,7 @@ void Fase::criaEspinho(Coordenadaf posicao) {
 	Espinho* espinho = new Espinho;
 	espinho->setTamanho(Coordenadaf(100,20));
 	espinho->setPosicao(Coordenadaf(posicao));
-	espinho->setCor(50, 50, 50);
+	espinho->setCor(200, 50, 50);
 	listaEntidades.adicionaEntidade(espinho);
 	gerenciadorColisao.obstaculos.push_back(espinho);
 

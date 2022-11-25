@@ -1,6 +1,7 @@
 #pragma once
 #include "std.h"
 #include "elemento.h"
+//creditos: https://www.youtube.com/channel/UCrNDrGwDXmBErjp0BGqqOUw
 
 using namespace std;
 

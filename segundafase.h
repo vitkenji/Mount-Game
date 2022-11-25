@@ -7,7 +7,7 @@ class SegundaFase : public Fase {
 private:
 public:
 	
-	SegundaFase(Janela* pJanela, Grafico* pGrafico);
+	SegundaFase(Janela* pJanela);
 	~SegundaFase();
 	void executar();
 	void criaInimigos();

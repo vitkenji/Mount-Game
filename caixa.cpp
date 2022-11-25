@@ -12,3 +12,7 @@ void Caixa::executa() {
 
 }
 
+void Caixa::prejudicaJogador(Jogador* pJogador){
+
+
+}

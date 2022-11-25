@@ -130,7 +130,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="background.cpp" />
     <ClCompile Include="boss.cpp" />
     <ClCompile Include="botao.cpp" />
     <ClCompile Include="caixa.cpp" />
@@ -149,6 +148,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="obstaculo.cpp" />
+    <ClCompile Include="agua.cpp" />
     <ClCompile Include="personagem.cpp" />
     <ClCompile Include="primeirafase.cpp" />
     <ClCompile Include="principal.cpp" />
@@ -157,7 +157,8 @@
     <ClCompile Include="selecaofase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="background.h" />
+    <ClInclude Include="agua.h" />
+    <ClInclude Include="hud.h" />
     <ClInclude Include="boss.h" />
     <ClInclude Include="botao.h" />
     <ClInclude Include="caixa.h" />

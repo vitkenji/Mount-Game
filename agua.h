@@ -1,12 +1,16 @@
 #pragma once
 #include "std.h"
 #include "obstaculo.h"
+#include "jogador.h"
 
-class Caixa : public Obstaculo {
+class Agua : public Obstaculo {
 private:
+	float retardo;
+
 public:
-	Caixa();
-	~Caixa();
+	Agua();
+	~Agua();
 	void executa();
 	void prejudicaJogador(Jogador* pJogador);
+	
 };

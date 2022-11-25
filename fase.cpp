@@ -1,6 +1,8 @@
 #include "fase.h"
 
-Fase::Fase(Janela* pJanela, Grafico* pGrafico) :
+using namespace std;
+
+Fase::Fase(Janela* pJanela) :
 	gerenciadorColisao(pJanela), listaEntidades(), pJanela(pJanela) {
 
 	gerenciadorGrafico = nullptr;
@@ -8,6 +10,8 @@ Fase::Fase(Janela* pJanela, Grafico* pGrafico) :
 	Ente::pGrafico = Grafico::getInstance();
 
 	criaJogador();
+	criaPontos();
+	//criaVida();
 
 }
 
@@ -65,6 +69,8 @@ void Fase::atualizaJogo() {
 	gerenciadorColisao.checaColisao();
 	gerenciadorGrafico->clear();
 	listaEntidades.inicializaEntidades();
+	gerenciadorGrafico->imprimeHud(pontos);
+	gerenciadorGrafico->imprimeHud(vida);
 	gerenciadorGrafico->display();
 
 }
@@ -121,7 +127,7 @@ void Fase::criaCaixa(Coordenadaf posicao) {
 }
 
 void Fase::criaBoss(Coordenadaf posicao, float tempo) {
-	Boss* boss = new Boss;
+	Boss* boss = new Boss(rand()%6 + 2);
 	boss->setTamanho(Coordenadaf(100, 100));
 	boss->setPosicao(Coordenadaf(posicao));
 	boss->setImagem("imagens/feiticeiro.png");
@@ -150,3 +156,48 @@ void Fase::criaEsqueleto(Coordenadaf posicao, float tempo) {
 
 }
 
+void Fase::criaAgua(Coordenadaf(posicao)){
+	
+	Agua* agua = new Agua;
+	agua->setTamanho(Coordenadaf(80, 20));
+	agua->setPosicao(Coordenadaf(posicao));
+	agua->setImagem("imagens/agua.png");
+	listaEntidades.adicionaEntidade(agua);
+	gerenciadorColisao.obstaculos.push_back(agua);
+
+}
+
+void Fase::criaPontos() {
+
+	sf::Font* ptr = new sf::Font;
+
+	if (!ptr->loadFromFile("m5x7.ttf")) {
+		delete ptr;
+		return;
+
+	}
+
+	if (pontos.getFont()) { delete pontos.getFont(); }
+
+	pontos.setFont(*ptr);
+	pontos.setPosition(20, 20);
+	pontos.setString("Pontuacao:");
+
+}
+
+void Fase::criaVida() {
+	sf::Font* ptr = new sf::Font;
+
+	if (!ptr->loadFromFile("m5x7.ttf")) {
+		delete ptr;
+		return;
+
+	}
+
+	if (pontos.getFont()) { delete pontos.getFont(); }
+
+	vida.setFont(*ptr);
+	vida.setPosition(800, 20);
+	vida.setString("Vida restante:");
+
+}

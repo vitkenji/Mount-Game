@@ -5,14 +5,28 @@ Jogador::Jogador() : Personagem(), pontos() {
 	pontos = 0;
 	vida = 1000;
 	aceleracao.y = 1000;
+	desaceleracao = 0;
+
 }
 
 Jogador::~Jogador() {
 
 }
 void Jogador::movimenta() {
+	velocidadeMovimento = 275;
 
-	int acel = 275;
+	if (desaceleracao > 0.05) {
+		desaceleracao -= pGrafico->getDt();
+		velocidadeMovimento = 50;
+		setPulo(false);
+
+	}
+
+	else {
+		velocidadeMovimento = 275;
+		desaceleracao = 0;
+
+	}
 
 	velocidade.x = 0;
 	aceleracao.y = 3000;
@@ -25,16 +39,16 @@ void Jogador::movimenta() {
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		velocidade.x = -acel;
+		velocidade.x = -velocidadeMovimento;
 
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		velocidade.x = acel;
+		velocidade.x = velocidadeMovimento;
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		velocidade.y = acel;
+		velocidade.y = velocidadeMovimento;
 
 	}
 }

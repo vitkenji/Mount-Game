@@ -1,6 +1,6 @@
 #include "segundafase.h"
 
-SegundaFase::SegundaFase(Janela* pJanela, Grafico* pGrafico):Fase(pJanela, pGrafico) {
+SegundaFase::SegundaFase(Janela* pJanela):Fase(pJanela) {
 	criaCenario();
 	criaInimigos();
 }
@@ -13,22 +13,22 @@ void SegundaFase::criaInimigos() {
 
 	int posicaoX = 400;
 
-	for (int i = 0; i < 3 ; i++) {
+	for (int i = 0; i < 2 + rand()%3; i++) {
 		criaEsqueleto(Coordenadaf(posicaoX, 600), 2.1 + rand()%4);
 		posicaoX += rand() % 100;
 	}
 
 	posicaoX = 400;
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 2 + rand()%3; i++) {
 		criaGoblin(Coordenadaf(posicaoX, 200));
 		posicaoX += rand() % 200;
 	}
 
 	posicaoX = 400;
 	int posicaoY = 0;
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 2 + rand()%3; i++) {
 		criaBoss(Coordenadaf(posicaoX, posicaoY), 2.1 + rand() % 4);
-		posicaoX += rand() % 300;
+		posicaoX += 100 + rand() % 300;
 		posicaoY += 100;
 	}
 }
@@ -72,7 +72,7 @@ void SegundaFase::criaCenario() {
 	gerenciadorColisao.obstaculos.push_back(plataforma2);
 
 	criaCaixa(Coordenadaf(550,460));
-	criaEspinho(Coordenadaf(490, 500));
+	criaEspinho(Coordenadaf(490, 499));
 
 	Obstaculo* plataforma3= new Obstaculo;
 	plataforma3->setTamanho(Coordenadaf(250, 20));
@@ -81,11 +81,21 @@ void SegundaFase::criaCenario() {
 	listaEntidades.adicionaEntidade(plataforma3);
 	gerenciadorColisao.obstaculos.push_back(plataforma3);
 
+	criaEspinho(Coordenadaf(820,439));
+
 	Obstaculo* plataforma4 = new Obstaculo;
 	plataforma4->setTamanho(Coordenadaf(250, 20));
-	plataforma4->setPosicao(Coordenadaf(1000, 400));
+	plataforma4->setPosicao(Coordenadaf(1100, 380));
 	plataforma4->setImagem("imagens/chao.png");
 	listaEntidades.adicionaEntidade(plataforma4);
 	gerenciadorColisao.obstaculos.push_back(plataforma4);
+
+	criaEspinho(Coordenadaf(1090, 379));
+
+
+	for (int i = 0; i < 3 + rand() % 2; i++) {
+		criaAgua(Coordenadaf(200 + 200*i,700));
+
+	}
 
 }

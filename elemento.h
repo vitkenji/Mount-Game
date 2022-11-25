@@ -1,5 +1,6 @@
 #pragma once
 #include "std.h"
+// creditos: https://www.youtube.com/channel/UCrNDrGwDXmBErjp0BGqqOUw
 
 template <class T>
 class Node {

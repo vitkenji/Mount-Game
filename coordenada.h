@@ -1,6 +1,7 @@
 #pragma once
 #pragma once
 #include <iostream>
+//creditos: https://www.youtube.com/channel/UCrNDrGwDXmBErjp0BGqqOUw
 
 namespace Math {
 

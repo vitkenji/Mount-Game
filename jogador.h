@@ -9,6 +9,9 @@ private:
 
 public:
 
+	float velocidadeMovimento;
+	float desaceleracao;
+
 	Jogador();
 	~Jogador();
 	void setPontos(int pontos);

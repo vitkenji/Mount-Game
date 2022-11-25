@@ -17,7 +17,7 @@ public:
 	list<Projetil*> projeteis;
 	list<Projetil*>::iterator i;
 
-	Boss(float tempo = 5);
+	Boss(float tempo);
 	~Boss();
 	Jogador* pJogador;
 	void adicionaProjetil(Projetil* ptr);

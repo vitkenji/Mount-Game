@@ -69,8 +69,8 @@ const float Grafico::getDt() const {
 
 }
 
-void Grafico::imprimeBackground(sf::RectangleShape* background) {
-	pJanela->janela.draw(*background);
+void Grafico::imprimeHud(sf::Text text) {
+	pJanela->janela.draw(text);
 
 
 }

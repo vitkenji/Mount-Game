@@ -5,8 +5,8 @@ Grafico* Grafico::instance = nullptr;
 
 Principal::Principal() :
     janela(1080, 720),
-    fase1(&janela, Grafico::getInstance()),
-    fase2(&janela, Grafico::getInstance()),
+    fase1(&janela),
+    fase2(&janela),
     menu() {
 
     grafico = Grafico::getInstance();

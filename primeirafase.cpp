@@ -2,8 +2,8 @@
 
 using namespace std;
 
-PrimeiraFase::PrimeiraFase(Janela* pJanela, Grafico* pGrafico) :
-	Fase(pJanela, pGrafico) {
+PrimeiraFase::PrimeiraFase(Janela* pJanela) :
+	Fase(pJanela) {
 
 	criaCenario();
 	criaInimigos();
@@ -53,9 +53,9 @@ void PrimeiraFase::criaInimigos() {
 		
 	}
 
-	criaBoss(Coordenadaf(600, 300), 5);
-	criaBoss(Coordenadaf(600, 600), 5);
-	criaBoss(Coordenadaf(200, 600), 5);
+	criaBoss(Coordenadaf(600, 300), 3 + rand() % 2);
+	criaBoss(Coordenadaf(600, 600), 2  + rand() % 3);
+	criaBoss(Coordenadaf(200, 600), 3 + rand()% 3);
 	
 }
 
@@ -97,11 +97,14 @@ void PrimeiraFase::criaCenario() {
 	listaEntidades.adicionaEntidade(plataforma5);
 	gerenciadorColisao.obstaculos.push_back(plataforma5);
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3 + rand()%2; i++) {
+
 		criaEspinho(Coordenadaf(200 + 200*i, 89));
-		criaEspinho(Coordenadaf(200 + 200*i, 409));
+		criaAgua(Coordenadaf(200 + 200 * i, 409));
+
 	}
 
 	criaCaixa(Coordenadaf(930,215));
+	criaCaixa(Coordenadaf(500, 660));
 
 }

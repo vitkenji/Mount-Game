@@ -1,5 +1,6 @@
 #pragma once
 #include "std.h"
+#include "agua.h"
 #include "ente.h"
 #include "colisao.h"
 #include "grafico.h"
@@ -18,10 +19,11 @@ protected:
 	ListaEntidade listaEntidades;
 	Janela* pJanela;
 	Jogador* pJogador;
-	
+	sf::Text pontos;
+	sf::Text vida;
 public:
 	
-	Fase(Janela* pJanela, Grafico* pGrafico);
+	Fase(Janela* pJanela);
 	~Fase();
 	Projetil* criaProjetil();
 	void gerenciaColisao();
@@ -33,5 +35,7 @@ public:
 	void criaEsqueleto(Coordenadaf posicao, float tempo);
 	void criaGoblin(Coordenadaf posicao);
 	void criaBoss(Coordenadaf posicao, float tempo);
-
+	void criaAgua(Coordenadaf(posicao));
+	void criaPontos();
+	void criaVida();
 };

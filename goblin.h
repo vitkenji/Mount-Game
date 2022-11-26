@@ -20,5 +20,6 @@ public:
 	void adicionaProjetil(Projetil* ptr);
 	void atira();
 	void executa();
-
+	void salvar();
+	void machucaJogador(Jogador* pJogador);
 };

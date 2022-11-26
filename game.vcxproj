@@ -139,6 +139,7 @@
     <ClCompile Include="espinho.cpp" />
     <ClCompile Include="esqueleto.cpp" />
     <ClCompile Include="fase.cpp" />
+    <ClCompile Include="fimjogo.cpp" />
     <ClCompile Include="goblin.cpp" />
     <ClCompile Include="grafico.cpp" />
     <ClCompile Include="inimigo.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="obstaculo.cpp" />
     <ClCompile Include="agua.cpp" />
+    <ClCompile Include="pausa.cpp" />
     <ClCompile Include="personagem.cpp" />
     <ClCompile Include="primeirafase.cpp" />
     <ClCompile Include="principal.cpp" />
@@ -158,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="agua.h" />
+    <ClInclude Include="fimjogo.h" />
     <ClInclude Include="hud.h" />
     <ClInclude Include="boss.h" />
     <ClInclude Include="botao.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="espinho.h" />
     <ClInclude Include="esqueleto.h" />
     <ClInclude Include="fase.h" />
+    <ClInclude Include="pausa.h" />
     <ClInclude Include="selecaofase.h" />
     <ClInclude Include="goblin.h" />
     <ClInclude Include="grafico.h" />

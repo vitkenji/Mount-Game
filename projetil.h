@@ -14,5 +14,5 @@ public:
 	void setDano(int dano);
 	int getDano();
 	void reset(Coordenadaf posicao);
-
+	void salvar();
 };

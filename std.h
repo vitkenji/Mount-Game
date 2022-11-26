@@ -7,3 +7,4 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 #include "time.h"
+#include <fstream>

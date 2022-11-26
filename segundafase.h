@@ -10,6 +10,7 @@ public:
 	SegundaFase(Janela* pJanela);
 	~SegundaFase();
 	void executar();
+	void criaBoss(Coordenadaf posicao, float tempo);
 	void criaInimigos();
 	void criaCenario();
 };

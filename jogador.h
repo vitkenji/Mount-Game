@@ -4,15 +4,17 @@
 
 class Jogador : public Personagem {
 private:
+	int id;
 	int pontos;
 	bool podePular;
+	int teclas[4];
 
 public:
 
 	float velocidadeMovimento;
 	float desaceleracao;
 
-	Jogador();
+	Jogador(int id);
 	~Jogador();
 	void setPontos(int pontos);
 	int getPontos();
@@ -21,5 +23,5 @@ public:
 	void movimenta();
 	void alteraVelocidade();
 	virtual void executa();
-
+	void salvar();
 };

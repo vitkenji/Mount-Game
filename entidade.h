@@ -18,5 +18,6 @@ public:
 	void atualizaPosicao();
 	void atualizaPosicao(Coordenadaf coordenada);
 	virtual void executa();
+	virtual void salvar();
 
 };

@@ -26,3 +26,4 @@ void Personagem::alteraVida(int dano) {
 	if (vida <= 0) { estaVivo = false; }
 
 }
+

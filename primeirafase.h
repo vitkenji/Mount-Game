@@ -17,5 +17,6 @@ public:
 	void executar();
 	void criaCenario();
 	void criaInimigos();
+	void criaGoblin(Coordenadaf posicao);
 
 };

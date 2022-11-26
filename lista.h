@@ -9,16 +9,16 @@ template <class T>
 
 class Lista {
 private:
-	Node<T>* pfirst;
-	Node<T>* plast;
+	Elemento<T>* pfirst;
+	Elemento<T>* plast;
 	int size;
 
 public:
 	int getSize() { return size; }
 
-	Node <T>* getPfirst() { return pfirst; }
+	Elemento <T>* getPfirst() { return pfirst; }
 
-	Node <T>* getPlast() { return plast; }
+	Elemento <T>* getPlast() { return plast; }
 
 	Lista() {
 		pfirst = nullptr;
@@ -28,8 +28,8 @@ public:
 	}
 
 	~Lista() {
-		Node<T>* patual = pfirst;
-		Node<T>* pnext = pfirst->pnext;
+		Elemento<T>* patual = pfirst;
+		Elemento<T>* pnext = pfirst->pnext;
 		while (patual != NULL) {
 			delete(patual);
 			patual = pnext;
@@ -39,8 +39,8 @@ public:
 	}
 
 	void clear() {
-		Node<T>* paux1 = pfirst;
-		Node<T>* paux2 = paux1;
+		Elemento<T>* paux1 = pfirst;
+		Elemento<T>* paux2 = paux1;
 		int i = 0;
 
 		while ((paux1 != nullptr) && (i < size)) {
@@ -58,7 +58,7 @@ public:
 
 	}
 
-	void setNode(Node<T>* pnode) {
+	void setNode(Elemento<T>* pnode) {
 		if (pnode != NULL) {
 			if (pfirst == NULL) {
 				pfirst = pnode;
@@ -85,7 +85,7 @@ public:
 
 		}
 
-		Node<T>* paux = pfirst;
+		Elemento<T>* paux = pfirst;
 		for (int i = 0; i < index; i++) {
 			paux = paux->getNext();
 
@@ -101,7 +101,7 @@ public:
 	}
 
 	void push(T* pdata) {
-		Node<T>* ptr = new Node<T>;
+		Elemento<T>* ptr = new Elemento<T>;
 		ptr->setData(pdata);
 
 		if (ptr == nullptr)
@@ -121,7 +121,7 @@ public:
 		}
 	}
 
-	void push(Node<T>* pdata) {
+	void push(Elemento<T>* pdata) {
 
 		if (pdata == nullptr) { return; }
 		size++;
@@ -138,8 +138,8 @@ public:
 	}
 
 	T* pop(T* pdata) {
-		Node<T>* paux = pfirst;
-		Node<T>* pprev = NULL;
+		Elemento<T>* paux = pfirst;
+		Elemento<T>* pprev = NULL;
 
 		while (paux != NULL) {
 			if (paux->getData() == pdata) {
@@ -174,8 +174,8 @@ public:
 
 		}
 
-		Node<T>* paux = pfirst;
-		Node<T>* pprev = NULL;
+		Elemento<T>* paux = pfirst;
+		Elemento<T>* pprev = NULL;
 
 		for (int i = 0; i < index; i++) {
 			pprev = paux;

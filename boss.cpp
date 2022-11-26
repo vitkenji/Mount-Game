@@ -87,3 +87,38 @@ void Boss::setEstaVivo(bool vivo) {
 	estaVivo = vivo;
 
 }
+
+void Boss::salvar() {
+	ofstream arquivoBoss("../salvamento/boss.txt", ios_base::app);
+	
+	arquivoBoss << estaVivo << ""
+		<< aceleracao.x << ""
+		<< aceleracao.y << ""
+		<< velocidade.x << ""
+		<< velocidade.y << ""
+		<< tamanho.x << ""
+		<< tamanho.y << ""
+		<< posicao.x << ""
+		<< posicao.y << ""
+		<< vida << ""
+		<< intervaloTiro << ""
+		<< tempoDirecao << ""
+		<< cooldown << ""
+		<< endl;
+
+	arquivoBoss.close();
+	
+	list<Projetil*>::iterator j;
+	for (j = i; j != i; j++) {
+
+		(*j)->salvar();
+		if (j == projeteis.end()) { j = projeteis.begin(); }
+
+	}
+
+}
+
+void Boss::machucaJogador(Jogador* pJogador){
+	pJogador->alteraVida(10);
+
+}

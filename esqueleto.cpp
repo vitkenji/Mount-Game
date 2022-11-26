@@ -23,3 +23,27 @@ void Esqueleto::executa() {
 	atualizaPosicao();
 
 }
+
+void Esqueleto::salvar() {
+	ofstream arquivoEsqueleto("../salvamento/esqueleto.txt", ios_base::app);
+		arquivoEsqueleto << estaVivo << ""
+			<< aceleracao.x << ""
+			<< aceleracao.y << ""
+			<< velocidade.x << ""
+			<< velocidade.y << ""
+			<< posicao.x << ""
+			<< posicao.y << ""
+			<< tamanho.x << ""
+			<< tamanho.y << ""
+			<< tempoDirecao << ""
+			<< cooldown << ""
+			<< vida << ""
+			<< endl;
+
+		arquivoEsqueleto.close();
+}
+
+void Esqueleto::machucaJogador(Jogador* pJogador) {
+	pJogador->alteraVida(3);
+
+}

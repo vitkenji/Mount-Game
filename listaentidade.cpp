@@ -16,7 +16,7 @@ void ListaEntidade::adicionaEntidade(Entidade* pEntidade) {
 
 void ListaEntidade::inicializaEntidades() {
 
-	Node<Entidade>* ptr = lista.getPfirst();
+	Elemento<Entidade>* ptr = lista.getPfirst();
 	
 	for (int i = 0; i < lista.getSize(); i++) {
 
@@ -30,7 +30,7 @@ void ListaEntidade::executaEntidades() {
 	Grafico* pGrafico = Grafico::getInstance();
 
 	float dt = pGrafico->getDt();
-	Node<Entidade>* pEntidade = lista.getPfirst();
+	Elemento<Entidade>* pEntidade = lista.getPfirst();
 
 	for (int i = 0; i < lista.getSize(); i++) {
 		if (pEntidade->getData()->estaVivo) {
@@ -39,4 +39,16 @@ void ListaEntidade::executaEntidades() {
 
 		pEntidade = pEntidade->getNext();
 	}
+}
+
+void ListaEntidade::salvaEntidades() {
+	
+	Elemento<Entidade>* pEntidade = lista.getPfirst();
+
+	for (int i = 0; i < lista.getSize(); i++) {
+		pEntidade->getData()->salvar();
+		pEntidade = pEntidade->getNext();
+
+	}
+
 }

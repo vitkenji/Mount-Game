@@ -12,5 +12,6 @@ public:
 	Esqueleto(float tempo = 2.1 + rand()%4);
 	~Esqueleto();
 	void executa();
-	
+	void salvar();
+	void machucaJogador(Jogador* pJogador);
 };

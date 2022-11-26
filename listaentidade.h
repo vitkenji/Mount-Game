@@ -1,6 +1,7 @@
 #pragma once
 #include "std.h"
 #include "lista.h"
+#include "elemento.h"
 #include "entidade.h"
 
 class ListaEntidade {
@@ -13,4 +14,6 @@ public:
 	void adicionaEntidade(Entidade* pEntidade);
 	void inicializaEntidades();
 	void executaEntidades();
+	void salvaEntidades();
+
 };

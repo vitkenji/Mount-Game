@@ -24,5 +24,7 @@ public:
 	void atira();
 	void executa();
 	void setEstaVivo(bool vivo);
+	void salvar();
+	void machucaJogador(Jogador* pJogador);
 
 };

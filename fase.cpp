@@ -9,7 +9,23 @@ Fase::Fase(Janela* pJanela) :
 	gerenciadorGrafico = Grafico::getInstance();
 	Ente::pGrafico = Grafico::getInstance();
 
-	criaJogador();
+	Obstaculo* background = new Obstaculo;
+	background->setTamanho(Coordenadaf(1080, 720));
+	background->setPosicao(Coordenadaf(540, 360));
+	background->setImagem("imagens/background.jpg");
+	listaEntidades.adicionaEntidade(background);
+
+	Obstaculo* chao = new Obstaculo;
+	chao->setPosicao(Coordenadaf(0, 705));
+	chao->setTamanho({ 4000,30 });
+	chao->setImagem("imagens/chao.png");
+	//chao->setCor(0, 210, 10);
+	listaEntidades.adicionaEntidade(chao);
+	gerenciadorColisao.obstaculos.push_back(chao);
+
+
+	criaJogador(1, "imagens/player1.png");
+	criaJogador(2, "imagens/player2.png");
 	criaPontos();
 	//criaVida();
 
@@ -35,28 +51,13 @@ void Fase::criaChao() {
 
 }
 
-void Fase::criaJogador() {
+void Fase::criaJogador(int id, string arquivo) {
 
-
-	Obstaculo* background = new Obstaculo;
-	background->setTamanho(Coordenadaf(1080, 720));
-	background->setPosicao(Coordenadaf(540, 360));
-	background->setImagem("imagens/background.jpg");
-	listaEntidades.adicionaEntidade(background);
-
-	Obstaculo* chao = new Obstaculo;
-	chao->setPosicao(Coordenadaf(0, 705));
-	chao->setTamanho({ 4000,30 });
-	chao->setImagem("imagens/chao.png");
-	//chao->setCor(0, 210, 10);
-	listaEntidades.adicionaEntidade(chao);
-	gerenciadorColisao.obstaculos.push_back(chao);
-
-	pJogador = new Jogador;
+	pJogador = new Jogador(id);
 	pJogador->setPosicao(Coordenadaf(0, 0));
 	pJogador->setTamanho(Coordenadaf(45, 45));
 	pJogador->setPontos(0);
-	pJogador->setImagem("imagens/player.png");
+	pJogador->setImagem(arquivo);
 	listaEntidades.adicionaEntidade(pJogador);
 	gerenciadorColisao.jogadores.push_back(pJogador);
 
@@ -97,24 +98,6 @@ void Fase::criaEspinho(Coordenadaf posicao) {
 
 }
 
-void Fase::criaGoblin(Coordenadaf posicao) {
-
-	Goblin* goblin = new Goblin;
-	goblin->setTamanho(Coordenadaf(40,40));
-	goblin->setPosicao(Coordenadaf(posicao));
-	goblin->setImagem("imagens/goblin.png");
-	goblin->pJogador = pJogador;
-	listaEntidades.adicionaEntidade(goblin);
-	gerenciadorColisao.inimigos.push_back(goblin);
-
-	for (int i = 0; i < 5; i++) {
-		goblin->adicionaProjetil(criaProjetil());
-
-	}
-	goblin->i = goblin->projeteis.begin();
-
-}
-
 void Fase::criaCaixa(Coordenadaf posicao) {
 	
 	Caixa* caixa = new Caixa;
@@ -126,26 +109,8 @@ void Fase::criaCaixa(Coordenadaf posicao) {
 
 }
 
-void Fase::criaBoss(Coordenadaf posicao, float tempo) {
-	Boss* boss = new Boss(rand()%6 + 2);
-	boss->setTamanho(Coordenadaf(100, 100));
-	boss->setPosicao(Coordenadaf(posicao));
-	boss->setImagem("imagens/feiticeiro.png");
-	boss->pJogador = pJogador;
-	boss->velocidade.x = (30);
-	listaEntidades.adicionaEntidade(boss);
-	gerenciadorColisao.inimigos.push_back(boss);
-
-	for (int i = 0; i < 5; i++) {
-		boss->adicionaProjetil(criaProjetil());
-
-	}
-	boss->i = boss->projeteis.begin();
-}
-
 void Fase::criaEsqueleto(Coordenadaf posicao, float tempo) {
 	
-	srand(time(NULL));
 	Esqueleto* esqueleto = new Esqueleto(tempo);
 	esqueleto->setTamanho(Coordenadaf(40, 40));
 	esqueleto->setPosicao(Coordenadaf(posicao));

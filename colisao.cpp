@@ -68,11 +68,10 @@ void Colisao::colisaoInimigo() {
 	
 	list<Jogador*>::iterator i;
 	list<Inimigo*>::iterator j;
-
 	
 	for (i = jogadores.begin(); i != jogadores.end(); i++) {
 		(*i)->aceleracao.y = 1000;
-
+		
 		for (j = inimigos.begin(); j != inimigos.end(); j++) {
 			
 			if ((*j)->estaVivo) {
@@ -85,7 +84,7 @@ void Colisao::colisaoInimigo() {
 
 				}
 				else if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1) {
-					(*i)->alteraVida(1);
+					(*j)->machucaJogador(*i);
 					cout << "vida jogador: " << (*i)->getVida() << endl;
 					(*i)->velocidade.x *= -1;
 					(*i)->aceleracao.x = 0;
@@ -120,6 +119,12 @@ void Colisao::colisaoObstaculo() {
 					(*i)->velocidade.y = 0;
 					(*j)->prejudicaJogador((*i));
 					cout << "vida: " << (*i)->getVida() << endl;
+
+					if (!(*i)->estaVivo) {
+						janela->janela.close();
+						cout << "morreu" << endl;
+						cout << "pontuacao: " << (*i)->getPontos() << endl;
+					}
 				}
 
 				(*i)->atualizaPosicao(contato);
@@ -137,14 +142,22 @@ void Colisao::colisaoProjetil() {
 	for (i = jogadores.begin(); i != jogadores.end(); i++) {
 
 		(*i)->aceleracao = Coordenadaf(0, 1000);
-
+		
 		for (j = projeteis.begin(); j != projeteis.end(); j++) {
+			
 			
 			if ((*j)->estaVivo) {
 				Coordenadaf contato = checaColisaoEntidades(*i, *j);
 
 				if (contato.x > 0.1 || contato.x < -0.1 || contato.y > 0.1 || contato.y < -0.1) {
 					(*i)->alteraVida((*j)->getDano());
+
+
+					if (!(*i)->estaVivo) {
+						janela->janela.close();
+						cout << "morreu" << endl;
+						cout << "pontuacao: " << (*i)->getPontos() << endl;
+					}
 					return;
 
 				}

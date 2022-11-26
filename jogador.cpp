@@ -1,12 +1,29 @@
 #include "jogador.h"
 
-Jogador::Jogador() : Personagem(), pontos() {
+using namespace std;
+
+Jogador::Jogador(int id) : Personagem(), pontos() {
 	podePular = false;
 	pontos = 0;
 	vida = 1000;
 	aceleracao.y = 1000;
 	desaceleracao = 0;
+	id = id;
 
+	if (id == 1) {
+		teclas[0] = sf::Keyboard::Key::W;
+		teclas[1] = sf::Keyboard::Key::A;
+		teclas[2] = sf::Keyboard::Key::D;
+		teclas[3] = sf::Keyboard::Key::S;
+
+	}
+	else if (id == 2) {
+		teclas[0] = sf::Keyboard::Key::Up;
+		teclas[1] = sf::Keyboard::Key::Left;
+		teclas[2] = sf::Keyboard::Key::Right;
+		teclas[3] = sf::Keyboard::Key::Down;
+
+	}
 }
 
 Jogador::~Jogador() {
@@ -32,22 +49,23 @@ void Jogador::movimenta() {
 	aceleracao.y = 3000;
 	//velocidade.y = 1000;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && podePular == true) {
+	if ((sf::Keyboard::isKeyPressed((sf::Keyboard::Key)teclas[0]) && podePular == true)){
 		velocidade.y += -800;
 		podePular = false;
 		atualizaPosicao();
+
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)teclas[1])){
 		velocidade.x = -velocidadeMovimento;
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)teclas[2])) {
 		velocidade.x = velocidadeMovimento;
 
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)teclas[3])) {
 		velocidade.y = velocidadeMovimento;
 
 	}
@@ -82,5 +100,25 @@ void Jogador::pontua() {
 void Jogador::alteraVelocidade() {
 	velocidade.x = 100;
 
+
+}
+
+void Jogador::salvar() {
+	ofstream arquivoJogador("../salvamento/jogador.txt", ofstream::out);
+	arquivoJogador << estaVivo << ""
+		<< tamanho.x << ""
+		<< tamanho.y << ""
+		<< posicao.x << ""
+		<< posicao.y << ""
+		<< velocidade.x << ""
+		<< velocidade.y << ""
+		<< aceleracao.x << ""
+		<< aceleracao.y << ""
+		<< pontos << ""
+		<< podePular << ""
+		<< vida << ""
+		<< endl;
+	
+	arquivoJogador.close();
 
 }

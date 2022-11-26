@@ -18,3 +18,7 @@ int Inimigo::getDano() {
 	return dano;
 
 }
+
+void Inimigo::machucaJogador(Jogador* pJogador) {
+
+}

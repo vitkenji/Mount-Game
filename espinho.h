@@ -13,4 +13,5 @@ public:
 	~Espinho();
 	void prejudicaJogador(Jogador* pJogador);
 	void executa();
+	void salvar();
 };

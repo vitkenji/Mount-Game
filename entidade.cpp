@@ -30,3 +30,8 @@ void Entidade::executa() {
 }
 
 bool Entidade::getEstaVivo() { return estaVivo; }
+
+void Entidade::salvar() {
+
+}
+

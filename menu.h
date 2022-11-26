@@ -6,7 +6,7 @@
 using namespace std;
 
 class Menu : public Ente {
-private:
+protected:
 	int opcao;
 	int totalOpcoes;
 	vector <Botao*> botoes;

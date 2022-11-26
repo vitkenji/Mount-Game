@@ -15,9 +15,9 @@ PrimeiraFase::~PrimeiraFase() {
 }
 
 void PrimeiraFase::executar() {
-
 	sf::Event evento;
-	
+	bool pausado = false;
+
 	while (pJanela->janela.isOpen()) {
 		while (pJanela->janela.pollEvent(evento)) {
 
@@ -25,37 +25,46 @@ void PrimeiraFase::executar() {
 				pJanela->janela.close();
 
 			}
+
+			if (evento.type == sf::Event::KeyPressed) {
+				if (evento.key.code == sf::Keyboard::Escape) {
+					if (pausado == false) { pausado = true; }
+					else {
+						listaEntidades.salvaEntidades();
+						return;
+
+					}
+				}
+				else if (evento.key.code == sf::Keyboard::Enter) {
+					pausado = false;
+
+				}
+			}
 		}
-
-		atualizaJogo();
-
+		if (!pausado) { atualizaJogo(); }
+		else { pGrafico->atualizaDt(); }
 	}
 }
-
-void PrimeiraFase::criaInimigos() {
+void PrimeiraFase::criaInimigos(){
 	
-	srand(time(NULL));
 	int posicaoX = 400;
-	int posicaoY = 0;
 	for (int i = 0; i < 3 + rand()%3; i++) {
-		float tempo = 3 + rand() % 4;
-		criaEsqueleto(Coordenadaf(posicaoX, posicaoY), tempo);
-		posicaoX += 20 + rand()%200;
-		posicaoY += rand() % 100;
-	}
-	posicaoX = 400;
-	posicaoY = 100;
+		float tempo = 3 + rand() % 5;
+		criaEsqueleto(Coordenadaf(posicaoX, 0), tempo);
+		criaEsqueleto(Coordenadaf(posicaoX, 600), tempo);
+		criaEsqueleto(Coordenadaf(0 + 200*i, 300), tempo);
+		posicaoX += 20 + rand()%100;
 
-	for (int i = 0; i < 2 + rand() % 3; i++) {
-		criaGoblin(Coordenadaf(posicaoX, posicaoY));
+	}
+
+	posicaoX = 400;
+
+	for (int i = 0; i < 3 + rand() % 3; i++) {
+		criaGoblin(Coordenadaf(posicaoX, 200));
+		criaGoblin(Coordenadaf(140*i, 600));
 		posicaoX += rand() % 200;
-		posicaoY += 100;
 		
 	}
-
-	criaBoss(Coordenadaf(600, 300), 3 + rand() % 2);
-	criaBoss(Coordenadaf(600, 600), 2  + rand() % 3);
-	criaBoss(Coordenadaf(200, 600), 3 + rand()% 3);
 	
 }
 
@@ -101,10 +110,27 @@ void PrimeiraFase::criaCenario() {
 
 		criaEspinho(Coordenadaf(200 + 200*i, 89));
 		criaAgua(Coordenadaf(200 + 200 * i, 409));
+		criaCaixa(Coordenadaf(130*i, 660));
 
 	}
 
 	criaCaixa(Coordenadaf(930,215));
-	criaCaixa(Coordenadaf(500, 660));
+}
+
+void PrimeiraFase::criaGoblin(Coordenadaf posicao) {
+
+	Goblin* goblin = new Goblin;
+	goblin->setTamanho(Coordenadaf(40, 40));
+	goblin->setPosicao(Coordenadaf(posicao));
+	goblin->setImagem("imagens/goblin.png");
+	goblin->pJogador = pJogador;
+	listaEntidades.adicionaEntidade(goblin);
+	gerenciadorColisao.inimigos.push_back(goblin);
+
+	for (int i = 0; i < 5; i++) {
+		goblin->adicionaProjetil(criaProjetil());
+
+	}
+	goblin->i = goblin->projeteis.begin();
 
 }

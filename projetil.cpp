@@ -28,3 +28,19 @@ void Projetil::reset(Coordenadaf posicao) {
 	setPosicao(posicao);
 
 }
+
+void Projetil::salvar() {
+	ofstream arquivoProjetil("../salvamento/projetil.txt", ofstream::ios_base::app);
+	arquivoProjetil << estaVivo << ""
+		<< aceleracao.x << ""
+		<< aceleracao.y << ""
+		<< velocidade.x << ""
+		<< velocidade.y << ""
+		<< posicao.x << ""
+		<< posicao.y << ""
+		<< tamanho.x << ""
+		<< tamanho.y << ""
+		<< endl;
+	
+	arquivoProjetil.close();
+}

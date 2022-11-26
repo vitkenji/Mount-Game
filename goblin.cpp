@@ -67,3 +67,36 @@ void Goblin::executa() {
 		}
 	}
 }
+
+void Goblin::salvar(){
+	
+	ofstream arquivoGoblin("../salvamento/goblin.txt", ios_base::app);
+
+	arquivoGoblin << estaVivo << ""
+		<< aceleracao.x << ""
+		<< aceleracao.y << ""
+		<< velocidade.x << ""
+		<< velocidade.y << ""
+		<< tamanho.x << ""
+		<< tamanho.y << ""
+		<< posicao.x << ""
+		<< posicao.y << ""
+		<< vida << ""
+		<< intervaloTiro << ""
+		<< endl;
+	
+	arquivoGoblin.close();
+
+	list<Projetil*>::iterator j;
+	for (j = i; j != i; j++) {
+
+		(*j)->salvar();
+		if (j == projeteis.end()) { j = projeteis.begin(); }
+	
+	}
+}
+
+void Goblin::machucaJogador(Jogador* pJogador) {
+	pJogador->alteraVida(1);
+
+}

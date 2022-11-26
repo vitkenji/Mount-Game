@@ -11,4 +11,5 @@ public:
 	~SelecaoFase();
 	int executa();
 	void imprime();
+
 };

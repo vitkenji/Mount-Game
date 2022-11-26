@@ -11,6 +11,7 @@ public:
 	Agua();
 	~Agua();
 	void executa();
+	void salvar();
 	void prejudicaJogador(Jogador* pJogador);
 	
 };

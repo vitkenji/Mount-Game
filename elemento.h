@@ -3,37 +3,37 @@
 // creditos: https://www.youtube.com/channel/UCrNDrGwDXmBErjp0BGqqOUw
 
 template <class T>
-class Node {
+class Elemento {
 private:
 	T* pdata;
 
 public:
-	Node<T>* pnext;
+	Elemento<T>* pnext;
 
-	Node() {
+	Elemento() {
 		pnext = nullptr;
 		pdata = nullptr;
 
 	}
 
-	Node(Node* pn, T* pd) {
+	Elemento(Elemento* pn, T* pd) {
 		pnext = pn;
 		pdata = pd;
 
 	}
 
-	~Node() {
+	~Elemento() {
 		pnext = nullptr;
 		pdata = nullptr;
 
 	}
 
-	const void setNext(Node* pn) const {
+	const void setNext(Elemento* pn) const {
 		pnext = pn;
 
 	}
 
-	Node* getNext() const {
+	Elemento* getNext() const {
 		return pnext;
 
 	}

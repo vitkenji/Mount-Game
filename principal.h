@@ -14,7 +14,7 @@ private:
 	Menu menu;
 	Grafico* grafico;
 	Janela janela;
-	Jogador jogador;
+	//Jogador jogador;
 
 public:
 	Principal();

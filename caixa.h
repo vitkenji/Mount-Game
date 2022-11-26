@@ -9,4 +9,5 @@ public:
 	~Caixa();
 	void executa();
 	void prejudicaJogador(Jogador* pJogador);
+	void salvar();
 };
